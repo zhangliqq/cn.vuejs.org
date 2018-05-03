@@ -465,7 +465,7 @@ Vue.component('example', {
 
 `type` 也可以是一个自定义构造器函数，使用 `instanceof` 检测。
 
-当 prop 验证失败，Vue 会抛出警告 (如果使用的是开发版本)。注意 prop 会在组件实例创建__之前__进行校验，所以在 `default` 或 `validator` 函数里，诸如 `data`、`computed` 或 `methods` 等实例属性还无法使用。
+当 prop 验证失败，Vue 会抛出警告 (如果使用的是开发版本)。注意 prop 会在组件实例创建**之前**进行校验，所以在 `default` 或 `validator` 函数里，诸如 `data`、`computed` 或 `methods` 等实例属性还无法使用。
 
 ## 非 Prop 特性
 
@@ -516,7 +516,7 @@ Vue.component('example', {
 - 使用 `$on(eventName)` 监听事件
 - 使用 `$emit(eventName, optionalPayload)` 触发事件
 
-<p class="tip">Vue 的事件系统与浏览器的 [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) 有所不同。尽管它们运行起来类似，但是 `$on` 和 `$emit` __并不是__`addEventListener` 和 `dispatchEvent` 的别名。</p>
+<p class="tip">Vue 的事件系统与浏览器的 [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) 有所不同。尽管它们运行起来类似，但是 `$on` 和 `$emit` **并不是**`addEventListener` 和 `dispatchEvent` 的别名。</p>
 
 另外，父组件可以在使用子组件的地方直接用 `v-on` 来监听子组件触发的事件。
 
@@ -1350,7 +1350,7 @@ components: {
 <PascalCasedComponent></PascalCasedComponent>
 ```
 
-这意味着 PascalCase 是最通用的_声明约定_而 kebab-case 是最通用的_使用约定_。
+这意味着 PascalCase 是最通用的*声明约定*而 kebab-case 是最通用的*使用约定*。
 
 如果组件未经 `slot` 元素传入内容，你甚至可以在组件名后使用 `/` 使其自闭合：
 
@@ -1358,7 +1358,7 @@ components: {
 <my-component/>
 ```
 
-当然，这_只在_字符串模板中有效。因为自闭的自定义元素是无效的 HTML，浏览器原生的解析器也无法识别它。
+当然，这*只在*字符串模板中有效。因为自闭的自定义元素是无效的 HTML，浏览器原生的解析器也无法识别它。
 
 ### 递归组件
 
@@ -1407,7 +1407,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 </ul>
 ```
 
-当你仔细看时，会发现在渲染树上这两个组件_同时_为对方的父节点和子节点——这是矛盾的！当使用 `Vue.component` 将这两个组件注册为全局组件的时候，框架会自动为你解决这个矛盾。如果你已经是这样做的，就跳过下面这段吧。
+当你仔细看时，会发现在渲染树上这两个组件*同时*为对方的父节点和子节点——这是矛盾的！当使用 `Vue.component` 将这两个组件注册为全局组件的时候，框架会自动为你解决这个矛盾。如果你已经是这样做的，就跳过下面这段吧。
 
 然而，如果你使用诸如 webpack 或者 Browserify 之类的**模块化管理工具**来 require/import 组件的话，就会报错了：
 
@@ -1415,7 +1415,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 Failed to mount component: template or render function not defined.
 ```
 
-为了解释为什么会报错，简单的将上面两个组件称为 A 和 B。模块系统看到它需要 A，但是首先 A 需要 B，但是 B 需要 A，而 A 需要 B，循环往复。因为不知道到底应该先解析哪个，所以将会陷入无限循环。要解决这个问题，我们需要在其中一个组件中告诉模块化管理系统：“A 虽然_最后_会用到 B，但是不需要优先导入 B”。
+为了解释为什么会报错，简单的将上面两个组件称为 A 和 B。模块系统看到它需要 A，但是首先 A 需要 B，但是 B 需要 A，而 A 需要 B，循环往复。因为不知道到底应该先解析哪个，所以将会陷入无限循环。要解决这个问题，我们需要在其中一个组件中告诉模块化管理系统：“A 虽然*最后*会用到 B，但是不需要优先导入 B”。
 
 在我们的例子中，可以选择让 `tree-folder` 组件中来做这件事。我们知道引起矛盾的子组件是 `tree-folder-contents`，所以我们要等到 `beforeCreate` 生命周期钩子中才去注册它：
 
